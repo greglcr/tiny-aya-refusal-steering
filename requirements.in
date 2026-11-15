@@ -1,0 +1,13 @@
+# Python 3.12; dépendances pour notebooks, steering et évaluation locale.
+safetune==0.1.19
+auditkit[transformers,lmeval]==1.1.12
+transformers>=5.15,<5.22
+accelerate>=1.0,<2
+sentence-transformers
+scikit-learn
+matplotlib
+seaborn
+ipykernel
+ipywidgets
+jupyterlab
+pip

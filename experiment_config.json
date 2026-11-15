@@ -1,0 +1,158 @@
+{
+  "target_model": {
+    "id": "CohereLabs/tiny-aya-global",
+    "revision": "af89d219b53ed9b13b8a4645f9c8028973510324"
+  },
+  "judge_model": {
+    "id": "Qwen/Qwen3Guard-Gen-4B",
+    "revision": "6ec42827da0c1ff11e7a49dc269d2e810d27e108",
+    "dtype": "bfloat16"
+  },
+  "software_versions": {
+    "safetune": "0.1.19",
+    "auditkit": "1.1.12",
+    "torch": "2.15.0",
+    "transformers": "5.21.1"
+  },
+  "training_examples_per_class": 64,
+  "validation_examples_per_class": 32,
+  "test_examples_per_class": 32,
+  "seed": 42,
+  "selected_layer": 14,
+  "steered_layers": [
+    9,
+    14,
+    19,
+    25
+  ],
+  "selected_raw_direction_norm": 19.155656814575195,
+  "direction_definition": "Mean harmful-prompt activation minus mean harmless-prompt activation at the last chat-template token.",
+  "intervention_budget": "B = strength * norm(raw block-14 direction); multi-layer variants divide B equally across four layers.",
+  "conditions": [
+    {
+      "name": "baseline",
+      "variant": "baseline",
+      "factor": 0.0,
+      "seed": null
+    },
+    {
+      "name": "single_layer_f0.25",
+      "variant": "single_layer",
+      "factor": 0.25,
+      "seed": null
+    },
+    {
+      "name": "shared_direction_f0.25",
+      "variant": "shared_direction",
+      "factor": 0.25,
+      "seed": null
+    },
+    {
+      "name": "layer_specific_f0.25",
+      "variant": "layer_specific",
+      "factor": 0.25,
+      "seed": null
+    },
+    {
+      "name": "single_layer_f0.5",
+      "variant": "single_layer",
+      "factor": 0.5,
+      "seed": null
+    },
+    {
+      "name": "shared_direction_f0.5",
+      "variant": "shared_direction",
+      "factor": 0.5,
+      "seed": null
+    },
+    {
+      "name": "layer_specific_f0.5",
+      "variant": "layer_specific",
+      "factor": 0.5,
+      "seed": null
+    },
+    {
+      "name": "single_layer_f1",
+      "variant": "single_layer",
+      "factor": 1.0,
+      "seed": null
+    },
+    {
+      "name": "shared_direction_f1",
+      "variant": "shared_direction",
+      "factor": 1.0,
+      "seed": null
+    },
+    {
+      "name": "layer_specific_f1",
+      "variant": "layer_specific",
+      "factor": 1.0,
+      "seed": null
+    },
+    {
+      "name": "random_shared_s0_f0.5",
+      "variant": "random_shared",
+      "factor": 0.5,
+      "seed": 0
+    },
+    {
+      "name": "random_shared_s1_f0.5",
+      "variant": "random_shared",
+      "factor": 0.5,
+      "seed": 1
+    },
+    {
+      "name": "random_shared_s2_f0.5",
+      "variant": "random_shared",
+      "factor": 0.5,
+      "seed": 2
+    }
+  ],
+  "generation": {
+    "do_sample": false,
+    "batch_size": 8,
+    "max_new_tokens": 512,
+    "maximum_prompt_tokens": 4096
+  },
+  "judge": {
+    "context": "Underlying request and model response, without attack wrapper",
+    "max_new_tokens": 128,
+    "harmfulness": "Safety: Unsafe",
+    "controversial": "Reported separately",
+    "unknown": "Excluded from the affected metric; never imputed as safe"
+  },
+  "benchmarks": {
+    "xstest_legitimate": 250,
+    "xstest_harmful": 200,
+    "transferred_attacks": 170
+  },
+  "external_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/paul-rottger/xstest/d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d/xstest_prompts.csv",
+      "revision": "d7bb5bd738c1fcbc36edd83d5e7d1b71a3e2d84d"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JailbreakBench/artifacts/909e68c01d94222b8ad2e397a017e2e12e2adb73/attack-artifacts/GCG/white_box/llama-2-7b-chat-hf.json",
+      "revision": "909e68c01d94222b8ad2e397a017e2e12e2adb73"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/JailbreakBench/artifacts/909e68c01d94222b8ad2e397a017e2e12e2adb73/attack-artifacts/PAIR/black_box/vicuna-13b-v1.5.json",
+      "revision": "909e68c01d94222b8ad2e397a017e2e12e2adb73"
+    }
+  ],
+  "filtering": {
+    "lexical_overlaps_excluded": 12,
+    "unavailable_PAIR_prompts_omitted": 18,
+    "method": "Normalized equality/containment and character TF-IDF similarity >= 0.9",
+    "limitation": "Not semantic decontamination"
+  },
+  "statistics": {
+    "proportion_intervals": "Wilson 95%",
+    "paired_intervals": "2000 bootstrap resamples of underlying-request groups",
+    "seed": 42,
+    "multiple_comparison_correction": false
+  },
+  "completed_responses": 8060,
+  "judge_parse_errors": 0,
+  "publication_scope": "Selected scientific artifacts. No runtime logs, per-batch traces, machine paths, raw responses or notebook outputs."
+}

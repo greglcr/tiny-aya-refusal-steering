@@ -84,18 +84,6 @@ The recorded environment is Python 3.12, SafeTune 0.1.19, AuditKIT 1.1.12, Trans
 
 The plot can be regenerated from the summary table without a GPU. Full generation and independent re-judging require the original prompt text, calibration inputs, model caches and answers, which are not included in this selected release. The published calibration index identifies the original splits but is not enough to reconstruct prompt text by itself. The release supports inspection and analysis of saved scores, not an unconditional one-command rerun.
 
-## Limitations and next steps
-
-The automated judge has not been validated against human annotations, and its harmfulness score is not exact target-behavior success. Over-refusal does not establish preservation of general capabilities. Truncation can affect judgments, and transferred attacks do not test an adaptive adversary. No significant advantage of layer-specific steering is claimed.
-
-**Layer-specific steering is not prompt-local steering.** KNN and Random-K have not been implemented or evaluated in this campaign. Current random controls sample directions, not reference examples. Next steps are human review, matched-over-refusal comparisons, general-utility evaluation and prompt-local direction selection.
-
-## Sources and terms
-
-Tiny Aya Global is distributed under CC-BY-NC-4.0 according to its model card; download its weights from Cohere and accept any required terms there. Qwen3Guard-4B is Apache-2.0. AdvBench's linked card lists MIT; Alpaca lists CC-BY-NC-4.0. XSTest is attributed to Röttger et al. and its upstream data terms apply. JailbreakBench artifacts retain their upstream terms. Pinned external-source URLs are included in the configuration. No upstream weight files or benchmark prompt text are redistributed here.
-
-The hackathon's [submission instructions](https://hackathon.lexsi.ai/#submit) accept a GitHub README as the write-up when Hugging Face articles are unavailable. This document is prepared for that route as well as for an article if account eligibility permits.
-
 ## Local commands
 
 To regenerate the trade-off figure without a GPU:

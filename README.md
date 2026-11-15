@@ -75,23 +75,3 @@ Layer-specific directions show no advantage on these endpoints: at strength 0.25
 ![Metrics by intervention budget](figures/campaign_curves.png)
 
 All conditions are retained in the downloadable tables. Proportions have descriptive 95% Wilson intervals. Differences from baseline use paired bootstrap resampling of underlying-request groups, with 2,000 resamples and seed 42. These intervals are not corrected for multiple comparisons.
-
-## Reproduction and publication scope
-
-The release separates model artifacts, evaluation data and source code. The model repository contains four small steering vectors and their configuration, not base-model weights or a LoRA adapter. The results repository contains aggregate tables, readable per-example scores, source/split indexes and two figures. The code includes the original experiment modules, tests, a dependency lock and a CPU-only plotting command.
-
-The recorded environment is Python 3.12, SafeTune 0.1.19, AuditKIT 1.1.12, Transformers 5.21.1 and PyTorch 2.15.0. Model revisions and scientific settings are provided in `experiment_config.json`. The original campaign modules are preserved unchanged; their runtime logging code remains, but **no runtime logs or raw answers are published**.
-
-The plot can be regenerated from the summary table without a GPU. Full generation and independent re-judging require the original prompt text, calibration inputs, model caches and answers, which are not included in this selected release. The published calibration index identifies the original splits but is not enough to reconstruct prompt text by itself. The release supports inspection and analysis of saved scores, not an unconditional one-command rerun.
-
-## Local commands
-
-To regenerate the trade-off figure without a GPU:
-
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install matplotlib
-.venv/bin/python scripts/plot_tradeoff.py
-```
-
-The original experiment modules are under `scripts/`, and existing unit tests are under `tests/`. `requirements.lock` records the original environment. With that environment installed, run `python -m unittest discover -s tests`. The publication step does not rerun GPU experiments. See [the reproduction notes](docs/REPRODUCE.md).

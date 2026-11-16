@@ -153,6 +153,5 @@
     "multiple_comparison_correction": false
   },
   "completed_responses": 8060,
-  "judge_parse_errors": 0,
-  "publication_scope": "Selected scientific artifacts. No runtime logs, per-batch traces, machine paths, raw responses or notebook outputs."
+  "judge_parse_errors": 0
 }

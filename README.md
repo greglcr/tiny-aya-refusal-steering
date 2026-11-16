@@ -6,14 +6,11 @@ Base model and method: **Cohere Tiny Aya Global + SafeTune activation steering, 
 
 ## Track and project resources
 
-- [Hugging Face model collection](https://huggingface.co/collections/GLECO/tiny-aya-refusal-steering-models-6afa12cbf5afcdd33ce55451)
-- [Hugging Face dataset collection](https://huggingface.co/collections/GLECO/tiny-aya-refusal-steering-results-6afa12cc267f8340debdb1f6)
+- [Hugging Face collection — models and results](https://huggingface.co/collections/GLECO/tiny-aya-refusal-steering-models-and-results-6afacc2d458566ddfc8e1b26)
 - **Track 2b, problem 8:** Inference-time safety steering.
 - **Track 2a, problem 1:** Red-teaming and robustness evaluation.
 - [Model artifacts](https://huggingface.co/GLECO/tiny-aya-refusal-steering-vectors)
 - [Evaluation results](https://huggingface.co/datasets/GLECO/tiny-aya-refusal-steering)
-
-The publication contains selected scientific results and code. Runtime logs, per-batch traces, machine paths, raw generated answers and notebook outputs are deliberately excluded. Source benchmarks contain harmful requests; this write-up does not reproduce them.
 
 ## Abstract
 
@@ -25,7 +22,7 @@ After calibration with separate training, validation and test splits, we evaluat
 
 At low strength, sharing one direction across four layers reduces judged harmfulness on transferred attacks from 12.9% to 5.3%, while legitimate-request refusal increases from 8.8% to 12.4%. At intermediate strength, judged harmfulness falls to 1.2%, with over-refusal reaching 21.2%. Layer-specific directions do not demonstrate an advantage in the tested configurations.
 
-The contribution is a measured safety–over-refusal trade-off and a concrete SafeTune–AuditKIT integration. Results remain exploratory: transferred attacks do not establish adaptive robustness, judge labels need human validation, and over-refusal does not measure general utility. Prompt-dependent KNN and Random-K steering remain future work.
+The contribution is a measured safety–over-refusal trade-off and a concrete SafeTune–AuditKIT integration. Results remain exploratory: transferred attacks do not establish adaptive robustness, judge labels need human validation, and over-refusal does not measure general utility.
 
 ## Motivation and approach
 
